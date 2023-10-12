@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     {
         SwipeDetection.OnSwipe -= HandleMovePlayer;
     }
-
     private void Update()
     {
         if (isMoving)
@@ -30,26 +29,28 @@ public class Player : MonoBehaviour
     }
     private void HandleMovePlayer(Direct direction)
     {
-        if (!isMoving) // Chỉ xử lý vuốt nếu nhân vật không đang di chuyển
+        if (!isMoving  && direction != Direct.None) // Chỉ xử lý vuốt nếu nhân vật không đang di chuyển
         {
             currentDirection = direction;
             targetPosition = GetNextPoint(currentDirection);
+            Debug.Log($"Next Point {targetPosition}");
             isMoving = true;
         }
     }
     private void MovePlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        if (transform.position == targetPosition) // Đã đến điểm đích
+
+        if (transform.position ==  targetPosition)
         {
             isMoving = false;
             currentDirection = Direct.None;
         }
     }
-
     private Vector3 GetNextPoint(Direct direction)
     {
         Vector3 directionVector = Vector3.zero;
+        RaycastHit hit;
         switch (direction)
         {
             case Direct.Forward:
@@ -65,25 +66,19 @@ public class Player : MonoBehaviour
                 directionVector = Vector3.left;
                 break;
             case Direct.None:
-                return Vector3.zero;
+                return transform.position;
         }
-        RaycastHit hit;
-        Vector3 nextPoint = Vector3.zero;
-        for (int i = 1; i < 100; i++)
+        Debug.DrawRay(transform.position, directionVector, Color.red, 1000);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(directionVector), out hit, Mathf.Infinity, layerBrick))
         {
-            if (Physics.Raycast((transform.position + directionVector * i) + Vector3.up * 2, Vector3.down, out hit, 10f, layerBrick))
-            {
-
-                nextPoint = hit.collider.transform.position;
-            }
-            else
-            {
-
-                break;
-            }
+            directionVector = hit.collider.transform.position;
         }
-        return nextPoint;
-    }
+        else
+        {
+            directionVector = transform.position;
+        }
 
+        return directionVector;
+    }
 
 }

@@ -29,7 +29,7 @@ public class SwipeDetection : MonoBehaviour
 
                     {
                         Debug.Log("Vuốt chưa đủ");
-                        OnSwipe?.Invoke(Direct.None);
+                        return;
                     }
                     else
                     {
