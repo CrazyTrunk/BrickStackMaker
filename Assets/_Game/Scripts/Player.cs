@@ -140,9 +140,9 @@ public class Player : Singleton<Player>
         if (other.tag == "DropBrick")
         {
 
-            RemoveBrick(other.gameObject);
             if(playerPickColor == brick.Color)
             {
+                RemoveBrick(other.gameObject);
                 Destroy(other.gameObject);
             }
             else
