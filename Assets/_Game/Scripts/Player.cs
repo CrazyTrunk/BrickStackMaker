@@ -89,29 +89,39 @@ public class Player : Singleton<Player>
         stackOfBrick.Push(currentBrickWhenCollide);
         currentBrickWhenCollide.transform.SetParent(stackBrickParent.transform);
 
-        Vector3 Characterskin = skin.transform.localPosition;
-        Characterskin.y += 0.5f;
-        skin.transform.localPosition = Characterskin;
-        var pos = skin.transform.localPosition;
+        ChangePlayerPos(0.5f);
+
+        Vector3 pos = skin.transform.localPosition;
         pos.y -= 0.5f;
         currentBrickWhenCollide.transform.localPosition = pos;
     }
     public void RemoveBrick(GameObject currentPosDrop)
     {
 
-        if (stackBrickParent.transform.childCount > 0)
+        if (stackBrickParent.transform.childCount > 0 && stackOfBrick.Count > 0)
         {
             Transform lastChild = stackBrickParent.transform.GetChild(stackBrickParent.transform.childCount - 1);
-            lastChild.SetParent(currentPosDrop.transform, true);
-            lastChild.localPosition = Vector3.zero;
-            //lastChild.localPosition = currentPosDrop.transform.position;
+            stackOfBrick.Pop();
+            lastChild.SetParent(null);
+
+            ChangePlayerPos(-0.5f);
+
+
+            lastChild.transform.position = currentPosDrop.transform.position;
         }
+    }
+    private void ChangePlayerPos(float adjustmentValue)
+    {
+        Vector3 characterSkin = skin.transform.localPosition;
+        characterSkin.y += adjustmentValue;
+        skin.transform.localPosition = characterSkin;
     }
     private void OnTriggerEnter(Collider other)
     {
+        Brick brick = other.gameObject.GetComponent<Brick>();
+
         if (other.tag == "PickUpBrick")
         {
-            Brick brick = other.gameObject.GetComponent<Brick>();
 
             if (stackOfBrick.Count == 0)
             {
@@ -120,11 +130,25 @@ public class Player : Singleton<Player>
             if (playerPickColor == brick.Color)
             {
                 AddBrick(other.gameObject);
+                BoxCollider boxCollider = other.gameObject.GetComponent<BoxCollider>();
+                if (boxCollider != null)
+                {
+                    Destroy(boxCollider);
+                }
             }
         }
         if (other.tag == "DropBrick")
         {
+
             RemoveBrick(other.gameObject);
+            if(playerPickColor == brick.Color)
+            {
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                isMoving = false;
+            }
         }
     }
 }
