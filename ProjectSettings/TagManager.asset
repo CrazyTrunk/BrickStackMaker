@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Wall
   - PickUpBrick
-  - normal
   - DropBrick
   layers:
   - Default
