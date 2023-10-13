@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : Singleton<Player>
 {
     [SerializeField] private LayerMask layerBrick;
+    [SerializeField] private LayerMask layerDrop;
+
     [SerializeField] public GameObject stackBrickParent;
     [SerializeField] public GameObject skin;
     [SerializeField] private float speed = 5f;
@@ -14,7 +16,6 @@ public class Player : Singleton<Player>
     private Direct currentDirection = Direct.None;
 
     private Vector3 targetPosition;
-
     private bool isMoving = false;
     Stack<GameObject> stackOfBrick = new Stack<GameObject>();
     private void OnEnable()
@@ -27,6 +28,7 @@ public class Player : Singleton<Player>
     }
     private void Update()
     {
+        HasObstacleAhead(currentDirection);
         if (isMoving)
         {
             MovePlayer();
@@ -45,7 +47,6 @@ public class Player : Singleton<Player>
     private void MovePlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
         if (transform.position == targetPosition)
         {
             isMoving = false;
@@ -73,7 +74,6 @@ public class Player : Singleton<Player>
             case Direct.None:
                 return transform.position;
         }
-        Debug.DrawRay(transform.position, directionVector, Color.red, 1000);
         if (Physics.Raycast(transform.position, transform.TransformDirection(directionVector), out hit, Mathf.Infinity, layerBrick))
         {
             directionVector = hit.collider.transform.position;
@@ -84,6 +84,45 @@ public class Player : Singleton<Player>
         }
 
         return directionVector;
+    }
+    private bool HasObstacleAhead(Direct direction)
+    {
+        Vector3 directionVector = Vector3.zero;
+        RaycastHit hit;
+        switch (direction)
+        {
+            case Direct.Forward:
+                directionVector = Vector3.forward;
+                break;
+            case Direct.Back:
+                directionVector = Vector3.back;
+                break;
+            case Direct.Right:
+                directionVector = Vector3.right;
+                break;
+            case Direct.Left:
+                directionVector = Vector3.left;
+                break;
+            case Direct.None:
+                directionVector = transform.position;
+                break;
+        }
+
+        Vector3 rayStartPoint = transform.position + directionVector * 0.1f + Vector3.up;
+        Vector3 rayDirection = Vector3.down;
+        Debug.DrawRay(rayStartPoint, rayDirection, Color.red, 1f);  // Vẽ ray trong Scene để kiểm tra
+        if (Physics.Raycast(rayStartPoint, rayDirection, out hit, 1f, layerDrop))
+        {
+            Debug.Log("Hit");
+            Brick brick = hit.collider.gameObject.GetComponent<Brick>();
+            if (brick.Color != playerPickColor)
+            {
+                isMoving = false;
+                return true;
+            }
+        }
+
+        return false;
     }
     public void AddBrick(GameObject currentBrickWhenCollide)
     {
