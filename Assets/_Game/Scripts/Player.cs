@@ -14,7 +14,8 @@ public class Player : Singleton<Player>
     [SerializeField] public GameObject stackBrickParent;
     [SerializeField] public GameObject prevBrick;
     [SerializeField] public GameObject skin;
-
+    Stack<GameObject> stackOfBrick = new Stack<GameObject>();
+    private BrickColor playerPickColor;
     private void OnEnable()
     {
         SwipeDetection.OnSwipe += HandleMovePlayer;
@@ -37,7 +38,6 @@ public class Player : Singleton<Player>
         {
             currentDirection = direction;
             targetPosition = GetNextPoint(currentDirection);
-            Debug.Log($"Next Point {targetPosition}");
             isMoving = true;
         }
     }
@@ -86,24 +86,45 @@ public class Player : Singleton<Player>
     }
     public void AddBrick(GameObject currentBrickWhenCollide)
     {
+        stackOfBrick.Push(currentBrickWhenCollide);
         currentBrickWhenCollide.transform.SetParent(stackBrickParent.transform);
-        Vector3 posOfCurrentBrick = prevBrick.transform.localPosition;
-        currentBrickWhenCollide.transform.localPosition = posOfCurrentBrick;
-        posOfCurrentBrick.y += 0.5f;
-        prevBrick.transform.localPosition = posOfCurrentBrick;
+
         Vector3 Characterskin = skin.transform.localPosition;
         Characterskin.y += 0.5f;
         skin.transform.localPosition = Characterskin;
+        var pos = skin.transform.localPosition;
+        pos.y -= 0.5f;
+        currentBrickWhenCollide.transform.localPosition = pos;
     }
     public void RemoveBrick(GameObject currentPosDrop)
     {
-        Transform lastBrick = stackBrickParent.transform.GetChild(stackBrickParent.transform.childCount - 1);
-        lastBrick.parent = null;
-        lastBrick.transform.position = currentPosDrop.transform.localPosition ;
-        foreach (Transform child in stackBrickParent.transform)
+
+        if (stackBrickParent.transform.childCount > 0)
         {
-            child.localPosition -= new Vector3(0, 0.5f, 0);
+            Transform lastChild = stackBrickParent.transform.GetChild(stackBrickParent.transform.childCount - 1);
+            lastChild.SetParent(currentPosDrop.transform, true);
+            lastChild.localPosition = Vector3.zero;
+            //lastChild.localPosition = currentPosDrop.transform.position;
         }
-        skin.transform.localPosition -= new Vector3(0, 0.5f, 0);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PickUpBrick")
+        {
+            Brick brick = other.gameObject.GetComponent<Brick>();
+
+            if (stackOfBrick.Count == 0)
+            {
+                playerPickColor = brick.Color;
+            }
+            if (playerPickColor == brick.Color)
+            {
+                AddBrick(other.gameObject);
+            }
+        }
+        if (other.tag == "DropBrick")
+        {
+            RemoveBrick(other.gameObject);
+        }
     }
 }
