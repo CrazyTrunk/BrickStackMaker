@@ -95,4 +95,15 @@ public class Player : Singleton<Player>
         Characterskin.y += 0.5f;
         skin.transform.localPosition = Characterskin;
     }
+    public void RemoveBrick(GameObject currentPosDrop)
+    {
+        Transform lastBrick = stackBrickParent.transform.GetChild(stackBrickParent.transform.childCount - 1);
+        lastBrick.parent = null;
+        lastBrick.transform.position = currentPosDrop.transform.localPosition ;
+        foreach (Transform child in stackBrickParent.transform)
+        {
+            child.localPosition -= new Vector3(0, 0.5f, 0);
+        }
+        skin.transform.localPosition -= new Vector3(0, 0.5f, 0);
+    }
 }

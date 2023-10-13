@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - PickUpBrick
   - normal
+  - DropBrick
   layers:
   - Default
   - TransparentFX

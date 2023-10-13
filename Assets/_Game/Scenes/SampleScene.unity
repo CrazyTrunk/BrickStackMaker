@@ -206,6 +206,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7518383}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &11570891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+  m_PrefabInstance: {fileID: 898272015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11570894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11570891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d184b9f986ff4494fa3e71b72b1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &27871207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -366,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -474,13 +491,20 @@ PrefabInstance:
       value: UnBrick (4)
       objectReference: {fileID: 0}
     - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
       propertyPath: m_TagString
-      value: PickUpBrick
+      value: DropBrick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1416792920}
   m_SourcePrefab: {fileID: 100100000, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
 --- !u!1 &322712263
 GameObject:
@@ -689,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -1186,7 +1210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -1294,13 +1318,20 @@ PrefabInstance:
       value: UnBrick (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
       propertyPath: m_TagString
-      value: PickUpBrick
+      value: DropBrick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1848846972}
   m_SourcePrefab: {fileID: 100100000, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
 --- !u!1001 &887480277
 PrefabInstance:
@@ -1320,7 +1351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -1428,13 +1459,20 @@ PrefabInstance:
       value: UnBrick (5)
       objectReference: {fileID: 0}
     - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
       propertyPath: m_TagString
-      value: PickUpBrick
+      value: DropBrick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 11570894}
   m_SourcePrefab: {fileID: 100100000, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
 --- !u!1 &909501205
 GameObject:
@@ -1486,7 +1524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -1628,7 +1666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -2142,7 +2180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6986889015267478607, guid: cc085310855f56543a710b9851cbddd0, type: 3}
       propertyPath: m_TagString
@@ -2280,6 +2318,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349404796}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1416792917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+  m_PrefabInstance: {fileID: 294753023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1416792920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416792917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d184b9f986ff4494fa3e71b72b1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1437181266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2333,13 +2388,20 @@ PrefabInstance:
       value: UnBrick (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
       propertyPath: m_TagString
-      value: PickUpBrick
+      value: DropBrick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2047276770}
   m_SourcePrefab: {fileID: 100100000, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
 --- !u!1 &1447096431
 GameObject:
@@ -2805,6 +2867,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1742691010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+  m_PrefabInstance: {fileID: 2063969819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742691013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742691010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d184b9f986ff4494fa3e71b72b1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1746745043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2967,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746745043}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1848846969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+  m_PrefabInstance: {fileID: 882544155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1848846972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848846969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d184b9f986ff4494fa3e71b72b1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1857715768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+  m_PrefabInstance: {fileID: 2876577490626610331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1857715771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857715768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d184b9f986ff4494fa3e71b72b1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1942169893
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,6 +3243,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8285afed551ed5d46923fbc9fe320ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2047276767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+  m_PrefabInstance: {fileID: 1437181266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2047276770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047276767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d184b9f986ff4494fa3e71b72b1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2063969819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3183,13 +3313,20 @@ PrefabInstance:
       value: UnBrick (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
       propertyPath: m_TagString
-      value: PickUpBrick
+      value: DropBrick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1742691013}
   m_SourcePrefab: {fileID: 100100000, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
 --- !u!1 &2119023199
 GameObject:
@@ -3554,12 +3691,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
       propertyPath: m_TagString
-      value: PickUpBrick
+      value: DropBrick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7730872678523318708, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1857715771}
   m_SourcePrefab: {fileID: 100100000, guid: fc025107043e3174d9a14023c7ddf736, type: 3}
 --- !u!4 &4285139166250742888
 Transform:
