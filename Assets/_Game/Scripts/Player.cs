@@ -6,16 +6,17 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
-    [SerializeField] private float speed = 5f;
-    private Direct currentDirection = Direct.None;
     [SerializeField] private LayerMask layerBrick;
-    private bool isMoving = false;
-    private Vector3 targetPosition;
     [SerializeField] public GameObject stackBrickParent;
-    [SerializeField] public GameObject prevBrick;
     [SerializeField] public GameObject skin;
-    Stack<GameObject> stackOfBrick = new Stack<GameObject>();
+    [SerializeField] private float speed = 5f;
     private BrickColor playerPickColor;
+    private Direct currentDirection = Direct.None;
+
+    private Vector3 targetPosition;
+
+    private bool isMoving = false;
+    Stack<GameObject> stackOfBrick = new Stack<GameObject>();
     private void OnEnable()
     {
         SwipeDetection.OnSwipe += HandleMovePlayer;
@@ -140,7 +141,7 @@ public class Player : Singleton<Player>
         if (other.tag == "DropBrick")
         {
 
-            if(playerPickColor == brick.Color)
+            if (playerPickColor == brick.Color)
             {
                 RemoveBrick(other.gameObject);
                 Destroy(other.gameObject);
