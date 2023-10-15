@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 5f;
     void Start()
     {
-        target = FindObjectOfType<Player>()?.transform;
+        offset = transform.position - target.position;
     }
     private void FixedUpdate()
     {

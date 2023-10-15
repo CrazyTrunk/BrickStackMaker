@@ -1,7 +1,8 @@
 public enum GameState
 {
-    Play,
-    Pause,
-    Victory,
-    Defeat
+    MainMenu,
+    Playing,
+    LevelComplete,
+    Setting,
+    Victory
 }

@@ -26,6 +26,10 @@ public class Player : Singleton<Player>
     {
         SwipeDetection.OnSwipe -= HandleMovePlayer;
     }
+    private void Start()
+    {
+        OnInit();
+    }
     private void Update()
     {
         HasObstacleAhead(currentDirection);
@@ -84,6 +88,10 @@ public class Player : Singleton<Player>
         }
 
         return directionVector;
+    }
+    private void OnInit()
+    {
+
     }
     private bool HasObstacleAhead(Direct direction)
     {
