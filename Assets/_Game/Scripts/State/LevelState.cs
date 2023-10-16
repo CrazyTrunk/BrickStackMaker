@@ -1,5 +1,5 @@
 
-public class LevelCompleteState : IState<GameManager>
+public class LevelState : IState<GameManager>
 {
     public void OnEnter(GameManager gameManager)
     {

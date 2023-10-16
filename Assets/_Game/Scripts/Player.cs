@@ -10,7 +10,7 @@ public class Player : Singleton<Player>
     [SerializeField] private LayerMask layerDrop;
 
     [SerializeField] public GameObject stackBrickParent;
-    [SerializeField] public GameObject skin;
+    [SerializeField] public Transform skin;
     [SerializeField] private float speed = 5f;
     private BrickColor playerPickColor;
     private Direct currentDirection = Direct.None;
@@ -25,10 +25,6 @@ public class Player : Singleton<Player>
     private void OnDisable()
     {
         SwipeDetection.OnSwipe -= HandleMovePlayer;
-    }
-    private void Start()
-    {
-        OnInit();
     }
     private void Update()
     {
@@ -89,9 +85,11 @@ public class Player : Singleton<Player>
 
         return directionVector;
     }
-    private void OnInit()
+    public void OnInit()
     {
-
+        isMoving = false;
+        ClearBrick();
+        skin.localPosition = Vector3.zero;
     }
     private bool HasObstacleAhead(Direct direction)
     {
@@ -163,6 +161,15 @@ public class Player : Singleton<Player>
         Vector3 characterSkin = skin.transform.localPosition;
         characterSkin.y += adjustmentValue;
         skin.transform.localPosition = characterSkin;
+    }
+    public void ClearBrick()
+    {
+        for(int i = 0; i < stackOfBrick.Count; i++)
+        {
+            var brick = stackOfBrick.Pop();
+            Destroy(brick);
+        }
+        stackOfBrick.Clear();
     }
     private void OnTriggerEnter(Collider other)
     {

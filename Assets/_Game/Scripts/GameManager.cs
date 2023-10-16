@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public UIManager UIManager;      
     public LevelManager LevelManager;
-
+    private GameState gameState;
     private IState<GameManager> currentState;
     private int currentLevel = 1;
 
