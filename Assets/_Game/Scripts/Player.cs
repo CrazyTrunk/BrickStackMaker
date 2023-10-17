@@ -10,6 +10,8 @@ public class Player : Singleton<Player>
     [SerializeField] private LayerMask layerDrop;
 
     [SerializeField] public GameObject stackBrickParent;
+    [SerializeField] public GameObject unStackBrickParent;
+
     [SerializeField] public Transform skin;
     [SerializeField] private float speed = 5f;
     private BrickColor playerPickColor;
@@ -89,7 +91,7 @@ public class Player : Singleton<Player>
     {
         isMoving = false;
         ClearBrick();
-        skin.localPosition = Vector3.zero;
+        ClearUnStackChild();
     }
     private bool HasObstacleAhead(Direct direction)
     {
@@ -119,7 +121,6 @@ public class Player : Singleton<Player>
         Debug.DrawRay(rayStartPoint, rayDirection, Color.red, 1f);  // Vẽ ray trong Scene để kiểm tra
         if (Physics.Raycast(rayStartPoint, rayDirection, out hit, 1f, layerDrop))
         {
-            Debug.Log("Hit");
             Brick brick = hit.collider.gameObject.GetComponent<Brick>();
             if (brick.Color != playerPickColor)
             {
@@ -138,7 +139,7 @@ public class Player : Singleton<Player>
         ChangePlayerPos(0.5f);
 
         Vector3 pos = skin.transform.localPosition;
-        pos.y -= 0.5f;
+        pos.y += 0.25f;
         currentBrickWhenCollide.transform.localPosition = pos;
     }
     public void RemoveBrick(GameObject currentPosDrop)
@@ -154,6 +155,8 @@ public class Player : Singleton<Player>
 
 
             lastChild.transform.position = currentPosDrop.transform.position;
+            lastChild.SetParent(unStackBrickParent.transform);
+
         }
     }
     private void ChangePlayerPos(float adjustmentValue)
@@ -171,11 +174,18 @@ public class Player : Singleton<Player>
         }
         stackOfBrick.Clear();
     }
+    public void ClearUnStackChild()
+    {
+        foreach (Transform child in unStackBrickParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         Brick brick = other.gameObject.GetComponent<Brick>();
 
-        if (other.tag == "PickUpBrick")
+        if (other.CompareTag(GameTag.PICK_UP_BRICK))
         {
 
             if (stackOfBrick.Count == 0)
@@ -192,7 +202,7 @@ public class Player : Singleton<Player>
                 }
             }
         }
-        if (other.tag == "DropBrick")
+        if (other.CompareTag(GameTag.DROP_BRICK))
         {
 
             if (playerPickColor == brick.Color)
@@ -204,6 +214,12 @@ public class Player : Singleton<Player>
             {
                 isMoving = false;
             }
+        }
+        if (other.CompareTag(GameTag.FINISH))
+        {
+            UIManager.Instance.ShowFinishUI();
+            UIManager.Instance.OnFinishUIShow();
+
         }
     }
 }

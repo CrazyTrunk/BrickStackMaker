@@ -7,11 +7,7 @@ public class LevelManager : MonoBehaviour
     public List<Level> levels = new List<Level>();
     public Player player;
     Level currentLevel;
-    private void Start()
-    {
-        LoadLevel(1);
-        OnInit();
-    }
+    [SerializeField] public GameObject unBrickHolder;
     public void LoadLevel(int index)
     {
         if(currentLevel != null)
@@ -19,11 +15,12 @@ public class LevelManager : MonoBehaviour
             Destroy(currentLevel.gameObject);
         }
         currentLevel = Instantiate(levels[index -1]);
+        player.transform.position = currentLevel.startPoint.position;
     }
     public void OnInit()
     {
-        player.transform.position = currentLevel.startPoint.position;
         player.OnInit();
+        player.transform.position = currentLevel.startPoint.position;
     }
     public void OnStart()
     {

@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public UIManager UIManager;      
-    public LevelManager LevelManager;
-    private GameState gameState;
-    private IState<GameManager> currentState;
-    private int currentLevel = 1;
+    private StateMachine<GameManager> _stateMachine;
+    private GameState _currentGameState;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public GameState CurrentGameState
     {
-        ChangeState(new MainMenuState());
+        get => _currentGameState;
+        set
+        {
+            _currentGameState = value;
+            switch (_currentGameState)
+            {
+                case GameState.MainMenu:
+                    _stateMachine.ChangeState(new MainMenuState(UIManager.Instance), this);
+                    break;
+                case GameState.Playing:
+                    _stateMachine.ChangeState(new PlayingState(), this);
+                    break;
+                case GameState.Retry:
+                    _stateMachine.ChangeState(new PlayingState(), this);
+                    break;
+            }
+        }
+    }
+    private void Start()
+    {
+        _stateMachine = new StateMachine<GameManager>();
+        CurrentGameState = GameState.MainMenu;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void ChangeState(IState<GameManager> newState)
     {
-        currentState?.OnExit(this);
-        currentState = newState;
-        currentState?.OnEnter(this);
+        _stateMachine.ChangeState(newState, this);
+    }
+
+    private void Update()
+    {
+        _stateMachine.ExecuteState(this);
     }
 }

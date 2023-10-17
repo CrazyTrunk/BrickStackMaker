@@ -4,5 +4,5 @@ public enum GameState
     Playing,
     LevelComplete,
     Setting,
-    Victory
+    Retry
 }
