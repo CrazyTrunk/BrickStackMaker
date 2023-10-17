@@ -339,7 +339,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 201125037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2071845352}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: MainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &201125037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,9 +677,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 1720092156929751138, guid: 1c55e6e5e394bd942bde75e8c14129a3, type: 3}
+  - {fileID: 5996444882803683262, guid: 1c55e6e5e394bd942bde75e8c14129a3, type: 3}
+  - {fileID: 5996444882803683262, guid: f0d3b4fcbf1dda84e9c97f5c5bca3a6c, type: 3}
+  - {fileID: 5996444882803683262, guid: 24a6053bb3eeddb4abab2a21f360118a, type: 3}
   player: {fileID: 322712270}
-  unBrickHolder: {fileID: 0}
+  unBrickHolder: {fileID: 1071838629}
 --- !u!1 &429133364
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +949,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 598863936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2071845352}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: RetryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &598863936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1732,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1013078868}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2071845352}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: PlayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1013078868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,11 +2611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2030962270}
-  playButton: {fileID: 1013078867}
-  retryButton: {fileID: 598863935}
-  finishUI: {fileID: 429133364}
-  gameManager: {fileID: 2010680460}
-  levelManager: {fileID: 367041327}
+  finishMenu: {fileID: 429133364}
 --- !u!1 &2146894340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,7 +2694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2146894343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2071845352}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: NextButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2146894343
 MonoBehaviour:
   m_ObjectHideFlags: 0

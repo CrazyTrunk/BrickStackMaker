@@ -4,65 +4,46 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button retryButton;
-
-    [SerializeField] private GameObject finishUI;
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private LevelManager levelManager;
-    private int currentLevel = 1;
-    private void Start()
-    {
-        HideAllMenu();
-        playButton.onClick.AddListener(OnPlayButtonClick); 
-    }
-
-    private void HideAllMenu()
-    {
-        mainMenu.SetActive(false);
-        finishUI.SetActive(false);
-    }
-    private void OnDestroy()
-    {
-        playButton.onClick.RemoveListener(OnPlayButtonClick);
-    }
-    private void OnPlayButtonClick()
-    {
-        HideAllMenu();
-        levelManager.LoadLevel(currentLevel);
-        gameManager.CurrentGameState = GameState.Playing;
-    }
-    private void OnRetryButtonClick(int level)
-    {
-        HideAllMenu();
-        levelManager.LoadLevel(level);
-        Player.Instance.OnInit();
-        gameManager.CurrentGameState = GameState.Retry;
-    }
-    public void OnFinishUIShow()
-    {
-        retryButton.onClick.AddListener(() =>
-        {
-            OnRetryButtonClick(currentLevel);
-        });
-    }
-
-    public void ShowMainMenuUI()
+    [SerializeField] public GameObject mainMenu;
+    [SerializeField] public GameObject finishMenu;
+    public void OpenMenuUi()
     {
         mainMenu.SetActive(true);
+        finishMenu.SetActive(false);
     }
-
-    public void HideMainMenuUI()
+    public void HideAllUI()
     {
         mainMenu.SetActive(false);
+        finishMenu.SetActive(false);
     }
-    public void ShowFinishUI()
+    public void OpenFinishUi()
     {
-        finishUI.SetActive(true);
+        finishMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
-    public void HideFinishUI()
+    public void PlayButton()
     {
-        finishUI.SetActive(false);
+        mainMenu.SetActive(false);
+        LevelManager.Instance.OnStart();
+    }
+    public void RetryButton()
+    {
+        finishMenu.SetActive(false);
+        GameManager.Instance.ChangeState(GameState.Playing);
+        LevelManager.Instance.LoadLevel();
+        LevelManager.Instance.OnInit();
+    }
+    public void NextButton()
+    {
+        LevelManager.Instance.NextLevel();
+        GameManager.Instance.ChangeState(GameState.Playing);
+        HideAllUI();
+    }
+    public void MainMenuButton()
+    {
+        OpenMenuUi();
+        GameManager.Instance.ChangeState(GameState.MainMenu);
+        LevelManager.Instance.LoadLevel(1);
+        LevelManager.Instance.OnInit();
     }
 }

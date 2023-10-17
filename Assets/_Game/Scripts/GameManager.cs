@@ -2,44 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>   
 {
-    private StateMachine<GameManager> _stateMachine;
-    private GameState _currentGameState;
-
-    public GameState CurrentGameState
+    private GameState _gameState;
+    private void Awake()
     {
-        get => _currentGameState;
-        set
-        {
-            _currentGameState = value;
-            switch (_currentGameState)
-            {
-                case GameState.MainMenu:
-                    _stateMachine.ChangeState(new MainMenuState(UIManager.Instance), this);
-                    break;
-                case GameState.Playing:
-                    _stateMachine.ChangeState(new PlayingState(), this);
-                    break;
-                case GameState.Retry:
-                    _stateMachine.ChangeState(new PlayingState(), this);
-                    break;
-            }
-        }
+        ChangeState(GameState.MainMenu);
     }
-    private void Start()
+    public void ChangeState(GameState state)
     {
-        _stateMachine = new StateMachine<GameManager>();
-        CurrentGameState = GameState.MainMenu;
+        _gameState = state;
     }
-
-    public void ChangeState(IState<GameManager> newState)
+    public bool IsState(GameState gameState)
     {
-        _stateMachine.ChangeState(newState, this);
-    }
-
-    private void Update()
-    {
-        _stateMachine.ExecuteState(this);
+        return _gameState == gameState;
     }
 }

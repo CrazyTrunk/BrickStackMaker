@@ -39,7 +39,7 @@ public class Player : Singleton<Player>
     }
     private void HandleMovePlayer(Direct direction)
     {
-        if (!isMoving && direction != Direct.None) // Chỉ xử lý vuốt nếu nhân vật không đang di chuyển
+        if (!isMoving && direction != Direct.None && GameManager.Instance.IsState(GameState.Playing)) // Chỉ xử lý vuốt nếu nhân vật không đang di chuyển
         {
             currentDirection = direction;
             targetPosition = GetNextPoint(currentDirection);
@@ -217,9 +217,7 @@ public class Player : Singleton<Player>
         }
         if (other.CompareTag(GameTag.FINISH))
         {
-            UIManager.Instance.ShowFinishUI();
-            UIManager.Instance.OnFinishUIShow();
-
+            LevelManager.Instance.OnFinish();
         }
     }
 }
